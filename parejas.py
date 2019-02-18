@@ -125,6 +125,10 @@ def Lanzar(Imagenes):
         b.configure(state=ACTIVE)
 
 
+def imageName(button):
+    return button.cget("image")[0]
+
+
 def Comparar(button, indexImage):
     global buttonsSelected, trys, ok, level, Imagenes
 
@@ -135,7 +139,7 @@ def Comparar(button, indexImage):
 
     if level == 1:
 
-        if button.cget("image")[0] == boton2.cget("image")[0]:
+        if imageName(button) == imageName(boton2):
             if trys == 0:
                 showinfo("window", "Excelente! Lo lograste a la primera!")
             else:
@@ -159,7 +163,7 @@ def Comparar(button, indexImage):
     elif len(buttonsSelected) == 2:
 
         # ok
-        if buttonsSelected[0].cget("image")[0] == buttonsSelected[1].cget("image")[0]:
+        if imageName(buttonsSelected[0]) == imageName(buttonsSelected[1]):
             if level == 2:
                 for b in buttonsSelected:
                     b.configure(image=Imagenes[indexImage], state=DISABLED)
@@ -188,8 +192,7 @@ def Comparar(button, indexImage):
     elif len(buttonsSelected) == 3 and level == 3:
 
         # ok
-        if buttonsSelected[0].cget("image")[0] == buttonsSelected[1].cget("image")[0] == \
-                buttonsSelected[2].cget("image")[0]:
+        if imageName(buttonsSelected[0]) == imageName(buttonsSelected[1]) == imageName(buttonsSelected[2]):
             for b in buttonsSelected:
                 b.configure(image=Imagenes[indexImage], state=DISABLED)
             ok += 1
